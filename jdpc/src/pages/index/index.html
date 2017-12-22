@@ -1,0 +1,59 @@
+<ion-header>
+  <!-- <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="person"></ion-icon>
+    </button>
+    <ion-title>首页</ion-title>
+  </ion-navbar> -->
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
+      <ion-col col-2>
+        <button ion-button menuToggle clear color="dark">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <ion-searchbar [(ngModel)]="input" (keyup.enter)="search()"></ion-searchbar>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button clear color="dark">
+          <ion-icon name="camera"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+</ion-grid>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-slides speed=3000 pager autoplay=1000 loop=true effect='fade' *ngIf="banners.length > 0">
+        <ion-slide *ngFor="let banner of banners"><img style="height:160px;" src='assets/{{banner.img}}' alt=""></ion-slide>
+      </ion-slides>
+    </ion-row>
+    <ion-row style="margin-top:20px;margin-bottom:20px"> 
+      <ion-col *ngFor="let sorts of sort" col-3 offset-1 (click)="toList(sorts)" >
+        {{sorts}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col col-10><h2>推荐商品</h2></ion-col> 
+        <ion-col *ngFor="let product of list" [navPush]="myDesnation" [navParams]="{lid:product.lid}" col-6>
+            <ion-thumbnail item-center >
+              <ion-card style="display:inline-block;width:150px;" >
+                <img style="margin:0 auto" src='assets/{{product.pic}}' alt="">
+                <ion-card-content>
+                  <h3>{{product.title}}</h3>
+                </ion-card-content>
+              </ion-card>
+            </ion-thumbnail>
+        </ion-col>
+        
+    </ion-row>
+    <p text-center *ngIf="pageNo>pageCount">到底了，不要再上拉了！！</p>
+        <ion-infinite-scroll *ngIf="pageNo <= pageCount" (ionInfinite)="loadMore($event)">
+          <ion-infinite-scroll-content loadingSpinner="dots" loadingText="正在加载更多..."> </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </ion-grid>
+</ion-content>

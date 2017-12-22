@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>用户中心</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div style="text-align:center;" *ngIf="user">
+        <h3>未登录</h3>
+        <button ion-button block [navPush]="myLogin">去登录</button>
+    </div>
+    <div text-center *ngIf="!user">
+        <img style="border-radius:50%;width:100px;height:100px;" src='assets/{{pic}}' alt="">
+        <h3>{{uname}}</h3>
+        <button ion-button block (click)="changePwd()">修改密码</button>
+        <button ion-button block color="danger" (click)="loginOut()">退出登录</button>
+      </div>
+</ion-content>

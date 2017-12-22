@@ -1,0 +1,57 @@
+<!--
+  Generated template for the PayPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header style="opacity:0.9;">
+
+  <ion-navbar>
+    <ion-title>支付</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="opacity:0.9;">
+  <div style="height:59%;background:#BBBBBB;"></div>
+      <ion-grid style="opacity:1;">
+        <ion-row align-items-center justify-content-center text-center>
+          <ion-col col-2>
+            <button (click)="closeModal(false)" ion-button clear>
+              <ion-icon name="close"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col >
+            <h1>确认付款</h1>
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button clear >
+              <ion-icon name="help"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-center text-center>
+          <ion-col>
+             ¥{{price}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col item-start col-3>
+            <span>支付账号</span>  
+          </ion-col>
+          <ion-col item-end text-end>
+            <span>18638759063</span> 
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col item-start col-3>
+            <span>付款方式</span>
+          </ion-col>
+          <ion-col item-end text-end>
+            <span>支付宝</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>  
+      <button color="secondary" ion-button block (click)="goPay()">支付</button>
+</ion-content>
